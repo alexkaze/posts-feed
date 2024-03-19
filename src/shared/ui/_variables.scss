@@ -1,0 +1,25 @@
+// Fonts
+$font-family: 'Montserrat', sans-serif;
+
+$font-html: 10px;
+$font-size-main: 1.6rem;
+$font-size-h1: 4rem;
+$font-size-post-title: 2rem;
+
+$font-color-main: #fff;
+
+$font-weight: (
+  'regular': 400,
+  'semiBold': 600,
+  'bold': 700,
+);
+
+@function weight($weight) {
+  @return map-get($font-weight, $weight);
+}
+
+$background-color-page: rgb(62, 62, 62);
+$background-color-header: rgb(86, 86, 86);
+$background-color-footer: rgb(86, 86, 86);
+$background-color-posts-list: rgb(126, 126, 126);
+$background-color-post: rgb(69, 69, 69);

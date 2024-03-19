@@ -1,0 +1,36 @@
+@import '@/shared/ui/variables';
+@import '@/shared/ui/extends';
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(2rem, 1fr) minmax(auto, 128rem) minmax(
+      2rem,
+      1fr
+    );
+  grid-template-rows: 10rem 6rem auto 6rem 10rem;
+  grid-template-areas:
+    'header header header'
+    '. . .'
+    '. main .'
+    '. . .'
+    'footer footer footer';
+
+  background-color: $background-color-page;
+}
+
+.header {
+  @extend %flex-center;
+  grid-area: header;
+  background-color: $background-color-header;
+}
+
+.main {
+  min-height: 85vh;
+  grid-area: main;
+}
+
+.footer {
+  @extend %flex-center;
+  grid-area: footer;
+  background-color: $background-color-footer;
+}
