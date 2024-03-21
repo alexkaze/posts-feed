@@ -3,11 +3,10 @@
 .post {
   padding: 2rem;
   max-width: 60rem;
-  // height: 100%;
-  height: 25rem;
-
   background-color: $background-color-post;
   border-radius: 1rem;
+
+  position: relative;
 
   &__title {
     font-size: $font-size-post-title;
@@ -15,8 +14,23 @@
     padding-bottom: 2rem;
   }
 
-  &__text {
-    max-height: 12rem;
+  &__link {
+    font-weight: weight(semiBold);
+    transition: color 0.2s ease;
+
+    position: absolute;
+    content: '';
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:hover {
+      color: darken($font-color-main, 10);
+    }
+  }
+
+  &--compact {
+    height: 25rem;
   }
 }
 

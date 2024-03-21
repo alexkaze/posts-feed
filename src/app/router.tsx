@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { BaseLayout } from './layouts';
 import { MainPage } from '@/pages/MainPage';
-// import { PostPage } from '@/pages/PostPage';
+import { PostPage } from '@/pages/PostPage';
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +15,14 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // {
-  //   path: 'posts/:postId',
-  //   element: <PostPage />,
-  // },
+  {
+    path: 'posts/:postId',
+    element: <BaseLayout />,
+    children: [
+      {
+        index: true,
+        element: <PostPage />,
+      },
+    ],
+  },
 ]);

@@ -1,11 +1,12 @@
 @import '@/shared/scss/variables';
 
 .posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  justify-items: center;
   gap: 3rem;
   padding: 5rem;
-  background-color: $background-color-posts-list;
-  border-radius: 1rem;
+  height: 100%;
+  max-height: 100%;
+
+  overflow-y: scroll;
 }

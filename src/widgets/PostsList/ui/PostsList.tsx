@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGetPostsQuery } from '../api';
 
+import { Card } from '@/shared/ui/Card';
 import { PostCompact } from '@/entities/PostCompact';
 
 import styles from './PostsList.module.scss';
@@ -43,7 +44,7 @@ const PostsList = () => {
   }, [data]);
 
   return (
-    <div className={styles.posts} ref={postsListRef}>
+    <Card className={styles.posts} refValue={postsListRef}>
       {error && <h2>Error occured</h2>}
       {isLoading && <h2>Loading...</h2>}
 
@@ -57,7 +58,7 @@ const PostsList = () => {
       ))}
 
       {!isLoading && isFetching && <h2>Loading...</h2>}
-    </div>
+    </Card>
   );
 };
 
