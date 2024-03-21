@@ -1,6 +1,9 @@
 import { useState, useRef, useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { IPost, Post } from '@/shared/ui/Post';
+
+import styles from './PostCompact.module.scss';
 
 const PostCompact = ({ id, title, body }: IPost) => {
   const [isOverflow, setIsOverflow] = useState(false);
@@ -15,12 +18,22 @@ const PostCompact = ({ id, title, body }: IPost) => {
   return (
     <Post
       id={id}
+      className={styles.compact}
       title={title}
       body={body}
       refValue={textRef}
-      isCompact={true}
       isOverflow={isOverflow}
-    />
+    >
+      {isOverflow && (
+        <Link
+          className={styles.link}
+          to={`/posts/${id}`}
+          state={{ id, title, body }}
+        >
+          Просмотр &#8594;
+        </Link>
+      )}
+    </Post>
   );
 };
 

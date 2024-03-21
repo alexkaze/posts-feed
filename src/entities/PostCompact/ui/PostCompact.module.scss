@@ -1,0 +1,22 @@
+@import '@/shared/scss/variables';
+
+.compact {
+  margin-top: 5rem;
+  height: 25rem;
+  position: relative;
+}
+
+.link {
+  font-weight: weight(semiBold);
+  transition: color 0.2s ease;
+
+  position: absolute;
+  content: '';
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover {
+    color: darken($font-color-main, 10);
+  }
+}

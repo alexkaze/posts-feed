@@ -1,63 +1,72 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGetPostsQuery } from '../api';
 
+import { Virtuoso } from 'react-virtuoso';
 import { Card } from '@/shared/ui/Card';
 import { PostCompact } from '@/entities/PostCompact';
 
 import styles from './PostsList.module.scss';
 
 const PostsList = () => {
-  const [startIndex, setStartIndex] = useState(0);
   const [limitPosts, setLimitPosts] = useState(7);
   const postsListRef = useRef<HTMLDivElement>(null);
 
-  const {
-    data = [],
-    error,
-    isLoading,
-    isFetching,
-  } = useGetPostsQuery({
-    start: startIndex,
+  const { data: fetchedPosts = [], error } = useGetPostsQuery({
+    start: 0,
     limit: limitPosts,
   });
 
   useEffect(() => {
-    if (data.length === 0) return;
-
-    const postsElements = postsListRef.current!.querySelectorAll('article');
-    const lastPostEl = postsElements[postsElements.length - 1];
-
-    const options = { threshold: 1 };
-
-    const observer: IntersectionObserver = new IntersectionObserver(
-      ([entry], observer) => {
-        if (entry.intersectionRatio < options.threshold) return;
-
-        setLimitPosts(prevState => prevState + 5);
-
-        observer.unobserve(entry.target);
-      },
-      options,
+    const containerEl = document.querySelector(
+      '[data-test-id="virtuoso-item-list"]',
     );
 
-    observer.observe(lastPostEl);
-  }, [data]);
+    containerEl?.classList.add(styles.list);
+  }, []);
 
   return (
-    <Card className={styles.posts} refValue={postsListRef}>
-      {error && <h2>Error occured</h2>}
-      {isLoading && <h2>Loading...</h2>}
+    <Card className={styles.card} refValue={postsListRef}>
+      {error && <h2 className={styles.error}>Error occured</h2>}
 
-      {data.map(post => (
-        <PostCompact
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          body={post.body}
-        />
-      ))}
+      <Virtuoso
+        data={fetchedPosts}
+        totalCount={limitPosts}
+        endReached={() =>
+          setLimitPosts(prevState =>
+            prevState + 7 > 100 ? 100 : prevState + 7,
+          )
+        }
+        components={{
+          Footer: () => {
+            if (error) return;
+            const endLimit = limitPosts === 100;
 
-      {!isLoading && isFetching && <h2>Loading...</h2>}
+            return (
+              <h2
+                className={
+                  endLimit
+                    ? `${styles.loading} ${styles.endlist}`
+                    : styles.loading
+                }
+              >
+                {endLimit ? '' : 'Loading...'}
+              </h2>
+            );
+          },
+        }}
+        itemContent={index => {
+          const post = fetchedPosts[index];
+
+          return (
+            <PostCompact
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              body={post.body}
+            />
+          );
+        }}
+      />
     </Card>
   );
 };

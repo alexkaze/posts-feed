@@ -1,27 +1,29 @@
 import { RefObject } from 'react';
-import { Link } from 'react-router-dom';
 
 import { IPost } from './types';
 
 import styles from './Post.module.scss';
 
 interface Post extends IPost {
-  isCompact?: boolean;
+  className?: string;
   refValue?: RefObject<HTMLParagraphElement>;
   isOverflow?: boolean;
+  children?: React.ReactNode;
 }
 
-const Post = ({ id, title, body, refValue, isCompact, isOverflow }: Post) => {
-  const postStyle = isCompact
-    ? `${styles.post} ${styles['post--compact']}`
-    : `${styles.post}`;
-
-  const textStyle = !isOverflow
-    ? `${styles['post__text']}`
-    : `${styles['post__text']} ${styles.overflow}`;
-
+const Post = ({
+  id,
+  title,
+  body,
+  refValue,
+  className,
+  isOverflow,
+  children,
+}: Post) => {
   return (
-    <article className={postStyle}>
+    <article
+      className={className ? `${styles.post} ${className}` : `${styles.post}`}
+    >
       <header>
         <h2 className={styles['post__title']}>
           {id}. {title}
@@ -29,19 +31,11 @@ const Post = ({ id, title, body, refValue, isCompact, isOverflow }: Post) => {
       </header>
 
       <main>
-        <p className={textStyle} ref={refValue}>
+        <p className={isOverflow ? styles.overflow : ''} ref={refValue}>
           {body + body + body}
         </p>
 
-        {isOverflow && (
-          <Link
-            className={styles['post__link']}
-            to={`/posts/${id}`}
-            state={{ id, title, body }}
-          >
-            Просмотр &#8594;
-          </Link>
-        )}
+        {children}
       </main>
     </article>
   );

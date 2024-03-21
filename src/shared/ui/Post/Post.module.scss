@@ -6,31 +6,10 @@
   background-color: $background-color-post;
   border-radius: 1rem;
 
-  position: relative;
-
   &__title {
     font-size: $font-size-post-title;
     font-weight: weight(semiBold);
     padding-bottom: 2rem;
-  }
-
-  &__link {
-    font-weight: weight(semiBold);
-    transition: color 0.2s ease;
-
-    position: absolute;
-    content: '';
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-
-    &:hover {
-      color: darken($font-color-main, 10);
-    }
-  }
-
-  &--compact {
-    height: 25rem;
   }
 }
 
