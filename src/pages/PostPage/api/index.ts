@@ -1,0 +1,1 @@
+export { useGetPostByIdQuery } from './postApi';

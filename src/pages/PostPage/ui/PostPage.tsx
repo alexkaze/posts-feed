@@ -1,21 +1,26 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-import { IPost } from '@/shared/ui/Post';
 import { Card } from '@/shared/ui/Card';
 import { Post } from '@/shared/ui/Post';
 
 import styles from './PostPage.module.scss';
 
+import { useGetPostByIdQuery } from '../api';
+
 const PostPage = () => {
-  const { state }: { state: IPost } = useLocation();
-  const { id, title, body } = state;
+  const { postId } = useParams();
+
+  const { data: post, error, isLoading } = useGetPostByIdQuery(+postId!);
 
   return (
     <Card className={styles.post}>
       <Link className={styles.btn} to="/">
         &#8592; Назад
       </Link>
-      <Post id={id} title={title} body={body} />
+      {error && <h2>Error occured</h2>}
+      {isLoading && <h2>Loading...</h2>}
+
+      {post && <Post id={post.id} title={post.title} body={post.body} />}
     </Card>
   );
 };

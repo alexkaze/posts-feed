@@ -25,11 +25,7 @@ const PostCompact = ({ id, title, body }: IPost) => {
       isOverflow={isOverflow}
     >
       {isOverflow && (
-        <Link
-          className={styles.link}
-          to={`/posts/${id}`}
-          state={{ id, title, body }}
-        >
+        <Link className={styles.link} to={`/posts/${id}`}>
           Просмотр &#8594;
         </Link>
       )}
