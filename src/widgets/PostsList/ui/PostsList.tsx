@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { useGetPostsQuery } from '@/app/postsApi';
+import { useGetPostsQuery } from '../api';
 
-import Post from '@/entities/ui/Post';
+import { PostCompact } from '@/entities/PostCompact';
 
 import styles from './PostsList.module.scss';
 
 const PostsList = () => {
+  const [startIndex, setStartIndex] = useState(0);
   const [limitPosts, setLimitPosts] = useState(7);
   const postsListRef = useRef<HTMLDivElement>(null);
 
@@ -13,8 +14,9 @@ const PostsList = () => {
     data = [],
     error,
     isLoading,
+    isFetching,
   } = useGetPostsQuery({
-    start: 0,
+    start: startIndex,
     limit: limitPosts,
   });
 
@@ -24,13 +26,11 @@ const PostsList = () => {
     const postsElements = postsListRef.current!.querySelectorAll('article');
     const lastPostEl = postsElements[postsElements.length - 1];
 
-    const options = { threshold: 0.5 };
+    const options = { threshold: 1 };
 
     const observer: IntersectionObserver = new IntersectionObserver(
       ([entry], observer) => {
         if (entry.intersectionRatio < options.threshold) return;
-
-        console.log(entry);
 
         setLimitPosts(prevState => prevState + 5);
 
@@ -48,8 +48,15 @@ const PostsList = () => {
       {isLoading && <h2>Loading...</h2>}
 
       {data.map(post => (
-        <Post key={post.id} id={post.id} title={post.title} body={post.body} />
+        <PostCompact
+          key={post.id}
+          id={post.id}
+          title={post.title}
+          body={post.body}
+        />
       ))}
+
+      {!isLoading && isFetching && <h2>Loading...</h2>}
     </div>
   );
 };

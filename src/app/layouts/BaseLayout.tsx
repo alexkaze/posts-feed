@@ -1,8 +1,8 @@
-import PostsList from '@/widgets/ui/PostsList';
+import { Outlet } from 'react-router-dom';
 
-import styles from './App.module.scss';
+import styles from './BaseLayout.module.scss';
 
-const App = () => {
+const BaseLayout = () => {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -10,7 +10,7 @@ const App = () => {
       </header>
 
       <main className={styles.main}>
-        <PostsList />
+        <Outlet />
       </main>
 
       <footer className={styles.footer}>
@@ -20,4 +20,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default BaseLayout;

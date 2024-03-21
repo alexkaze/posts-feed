@@ -3,5 +3,3 @@ export interface IPost {
   body: string;
   id: number;
 }
-
-export type PostsResponse = [] | IPost[];

@@ -1,0 +1,39 @@
+@import '@/shared/scss/variables';
+
+.post {
+  padding: 2rem;
+  max-width: 60rem;
+  // height: 100%;
+  height: 25rem;
+
+  background-color: $background-color-post;
+  border-radius: 1rem;
+
+  &__title {
+    font-size: $font-size-post-title;
+    font-weight: weight(semiBold);
+    padding-bottom: 2rem;
+  }
+
+  &__text {
+    max-height: 12rem;
+  }
+}
+
+.overflow {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 2rem;
+    width: 100%;
+    bottom: 0%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, $background-color-post);
+  }
+}
