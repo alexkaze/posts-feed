@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { Virtuoso } from 'react-virtuoso';
+
 import { useGetPostsQuery } from '../api';
 
-import { Virtuoso } from 'react-virtuoso';
 import { Card } from '@/shared/ui/Card';
+import { Error } from '@/shared/ui/Error';
+import { Loading } from '@/shared/ui/Loading';
 import { PostCompact } from '@/entities/PostCompact';
 
 import styles from './PostsList.module.scss';
@@ -28,7 +31,14 @@ const PostsList = () => {
 
   return (
     <Card className={styles.card} refValue={postsListRef}>
-      {error && <h2 className={styles.error}>Error occured</h2>}
+      {error && (
+        <div className={styles.error}>
+          <Error>
+            <h2>No posts found!</h2>
+            <p>Error occured while posts fetching. Please try later.</p>
+          </Error>
+        </div>
+      )}
 
       <Virtuoso
         data={fetchedPosts}
@@ -44,7 +54,9 @@ const PostsList = () => {
             const endLimit = limitPosts === 100;
 
             return (
-              <h2 className={styles.loading}>{endLimit ? '' : 'Loading...'}</h2>
+              <div className={styles.loading}>
+                {endLimit ? '' : <Loading />}
+              </div>
             );
           },
         }}

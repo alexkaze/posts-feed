@@ -1,5 +1,11 @@
 @import './variables';
 
+@mixin laptop() {
+  @media (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
 @mixin mobile() {
   @media (max-width: $breakpoint-sm) {
     @content;

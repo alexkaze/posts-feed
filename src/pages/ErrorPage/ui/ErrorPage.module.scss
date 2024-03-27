@@ -1,0 +1,63 @@
+@import '@/shared/scss/variables';
+@import '@/shared/scss/mixins';
+
+.page {
+  height: 100vh;
+  padding: 10rem;
+  background-color: $background-color-page;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 15rem;
+}
+
+.title {
+  font-size: $font-size-title-ErrorPage;
+  margin-bottom: 2rem;
+}
+
+.text {
+  font-size: $font-size-text-ErrorPage;
+  margin-bottom: 3rem;
+}
+
+.img-container {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Media
+@include laptop() {
+  .page {
+    padding: 5rem;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .content {
+    text-align: center;
+  }
+}
+
+@include mobile() {
+  .title {
+    font-size: $font-size-h2;
+  }
+
+  .text {
+    font-size: inherit;
+  }
+}

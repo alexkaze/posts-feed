@@ -1,26 +1,41 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useGetPostByIdQuery } from '../api';
 
 import { Card } from '@/shared/ui/Card';
+import { Loading } from '@/shared/ui/Loading';
+import { ButtonLink } from '@/shared/ui/ButtonLink';
 import { Post } from '@/shared/ui/Post';
+import { PostError } from '@/widgets/PostError';
 
 import styles from './PostPage.module.scss';
 
 const PostPage = () => {
+  const navigate = useNavigate();
   const { postId } = useParams();
 
   const { data: post, error, isLoading } = useGetPostByIdQuery(+postId!);
 
+  const content = (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <ButtonLink onClick={() => navigate(-1)}>&#8592; Back</ButtonLink>
+          {post && <Post id={post.id} title={post.title} body={post.body} />}
+        </>
+      )}
+    </>
+  );
+
   return (
     <Card className={styles.post}>
-      <Link className={styles.btn} to="/">
-        &#8592; Назад
-      </Link>
-      {error && <h2>Error occured</h2>}
-      {isLoading && <h2>Loading...</h2>}
-
-      {post && <Post id={post.id} title={post.title} body={post.body} />}
+      {error && 'status' in error ? (
+        <PostError status={error.status as number} />
+      ) : (
+        content
+      )}
     </Card>
   );
 };
