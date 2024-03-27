@@ -1,22 +1,24 @@
 @import '@/shared/scss/variables';
+@import '@/shared/scss/mixins';
 
 .compact {
   margin-top: 5rem;
-  height: 25rem;
-  position: relative;
 }
 
 .link {
-  font-weight: weight(semiBold);
+  font-weight: weight(bold);
+  text-decoration: underline;
+  padding-left: 1rem;
   transition: color 0.2s ease;
-
-  position: absolute;
-  content: '';
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
 
   &:hover {
     color: darken($font-color-main, 10);
+  }
+}
+
+// Media
+@include mobile() {
+  .compact {
+    margin-top: 3rem;
   }
 }

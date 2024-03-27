@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 
 html {
   font-size: $font-html;
@@ -9,12 +10,16 @@ body {
   font-size: $font-size-main;
   font-weight: weight(regular);
   color: $font-color-main;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 h1 {
   font-size: $font-size-h1;
   font-weight: weight(bold);
+}
+
+h2 {
+  font-size: $font-size-h2;
 }
 
 a {
@@ -24,4 +29,15 @@ a {
 
 img {
   display: block;
+}
+
+// Media
+@include mobile() {
+  h1 {
+    font-size: $font-size-h1--mobile;
+  }
+
+  h2 {
+    font-size: $font-size-h2--mobile;
+  }
 }

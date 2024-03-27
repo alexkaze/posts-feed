@@ -1,32 +1,16 @@
 @import '@/shared/scss/variables';
+@import '@/shared/scss/mixins';
 
 .post {
+  display: grid;
+  gap: 1rem;
   padding: 2rem;
   max-width: 60rem;
   background-color: $background-color-post;
   border-radius: 1rem;
+  overflow-y: auto;
 
   &__title {
-    font-size: $font-size-post-title;
     font-weight: weight(semiBold);
-    padding-bottom: 2rem;
-  }
-}
-
-.overflow {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    height: 2rem;
-    width: 100%;
-    bottom: 0%;
-    pointer-events: none;
-    background: linear-gradient(to bottom, transparent, $background-color-post);
   }
 }

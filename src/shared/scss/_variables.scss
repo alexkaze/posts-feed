@@ -3,8 +3,11 @@ $font-family: 'Montserrat', sans-serif;
 
 $font-html: 10px;
 $font-size-main: 1.6rem;
+$font-size-main--mobile: 1.5rem;
 $font-size-h1: 4rem;
-$font-size-post-title: 2rem;
+$font-size-h1--mobile: 3rem;
+$font-size-h2: 2rem;
+$font-size-h2--mobile: 1.8rem;
 
 $font-color-main: #fff;
 
@@ -24,3 +27,6 @@ $background-color-footer: rgb(86, 86, 86);
 $background-color-card: rgb(126, 126, 126);
 $background-color-posts-list: rgb(126, 126, 126);
 $background-color-post: rgb(69, 69, 69);
+
+// media
+$breakpoint-sm: 640px;

@@ -1,4 +1,5 @@
 @import '@/shared/scss/variables';
+@import '@/shared/scss/mixins';
 
 .card {
   height: 100%;
@@ -12,10 +13,14 @@
 
 .error,
 .loading {
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   text-align: center;
 }
 
-.endlist {
-  height: 5rem;
+// Media
+@include mobile() {
+  .error,
+  .loading {
+    padding: 1.5rem 0;
+  }
 }

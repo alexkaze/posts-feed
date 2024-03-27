@@ -19,7 +19,9 @@ const PostsList = () => {
   useEffect(() => {
     const containerEl = document.querySelector(
       '[data-test-id="virtuoso-item-list"]',
-    );
+    ) as HTMLElement;
+
+    containerEl.style.padding = '0 1rem';
 
     containerEl?.classList.add(styles.list);
   }, []);
@@ -42,15 +44,7 @@ const PostsList = () => {
             const endLimit = limitPosts === 100;
 
             return (
-              <h2
-                className={
-                  endLimit
-                    ? `${styles.loading} ${styles.endlist}`
-                    : styles.loading
-                }
-              >
-                {endLimit ? '' : 'Loading...'}
-              </h2>
+              <h2 className={styles.loading}>{endLimit ? '' : 'Loading...'}</h2>
             );
           },
         }}

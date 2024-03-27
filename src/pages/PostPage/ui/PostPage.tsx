@@ -1,11 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 
+import { useGetPostByIdQuery } from '../api';
+
 import { Card } from '@/shared/ui/Card';
 import { Post } from '@/shared/ui/Post';
 
 import styles from './PostPage.module.scss';
-
-import { useGetPostByIdQuery } from '../api';
 
 const PostPage = () => {
   const { postId } = useParams();

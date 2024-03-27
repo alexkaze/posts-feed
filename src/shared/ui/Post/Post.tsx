@@ -1,28 +1,20 @@
-import { RefObject } from 'react';
-
 import { IPost } from './types';
 
 import styles from './Post.module.scss';
 
 interface Post extends IPost {
-  className?: string;
-  refValue?: RefObject<HTMLParagraphElement>;
-  isOverflow?: boolean;
-  children?: React.ReactNode;
+  classes?: string;
+  textLimit?: number;
+  link?: React.ReactNode;
 }
 
-const Post = ({
-  id,
-  title,
-  body,
-  refValue,
-  className,
-  isOverflow,
-  children,
-}: Post) => {
+const Post = ({ id, title, body, classes, textLimit, link }: Post) => {
+  let clientText = body + body + body; // for UI
+  if (textLimit) clientText = clientText.substring(0, textLimit - 10) + '...';
+
   return (
     <article
-      className={className ? `${styles.post} ${className}` : `${styles.post}`}
+      className={classes ? `${styles.post} ${classes}` : `${styles.post}`}
     >
       <header>
         <h2 className={styles['post__title']}>
@@ -31,11 +23,10 @@ const Post = ({
       </header>
 
       <main>
-        <p className={isOverflow ? styles.overflow : ''} ref={refValue}>
-          {body + body + body}
+        <p>
+          {clientText}
+          {link && link}
         </p>
-
-        {children}
       </main>
     </article>
   );
