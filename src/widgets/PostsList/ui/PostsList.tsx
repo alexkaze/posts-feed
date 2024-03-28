@@ -34,7 +34,7 @@ const PostsList = () => {
       {error && (
         <div className={styles.error}>
           <Error>
-            <h2>No posts found!</h2>
+            <h2>Posts not found!</h2>
             <p>Error occured while posts fetching. Please try later.</p>
           </Error>
         </div>
