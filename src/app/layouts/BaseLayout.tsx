@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import styles from './BaseLayout.module.scss';
 
@@ -7,9 +7,7 @@ const BaseLayout = () => {
     <>
       <div className={styles.page}>
         <header className={styles.header}>
-          <Link to="/">
-            <h1>Posts Feed</h1>
-          </Link>
+          <h1>Posts Feed</h1>
         </header>
 
         <main className={styles.main}>
