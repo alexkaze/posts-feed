@@ -20,3 +20,19 @@
   display: flex;
   justify-content: center;
 }
+
+.scroller {
+  &::-webkit-scrollbar {
+    width: 0.5vw;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 1rem;
+    margin-block: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+  }
+}

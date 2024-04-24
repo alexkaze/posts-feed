@@ -42,6 +42,7 @@ const PostsList = () => {
       )}
 
       <Virtuoso
+        className={styles.scroller}
         data={fetchedPosts}
         totalCount={postsLimit}
         endReached={() => dispatch(increasePostsLimit())}
