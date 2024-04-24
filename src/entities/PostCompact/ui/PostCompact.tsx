@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { setCurrentPostId } from '../model';
+
+import { useAppDispatch } from '@/app/redux-hooks';
 import { IPost, Post } from '@/shared/ui/Post';
 
 import styles from './PostCompact.module.scss';
 
 const PostCompact = ({ id, title, body }: IPost) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const btnLinkHandler = () => {
+    dispatch(setCurrentPostId(id));
+    navigate(`/posts/${id}`);
+  };
+
   return (
     <Post
       id={id}
@@ -12,9 +24,9 @@ const PostCompact = ({ id, title, body }: IPost) => {
       body={body}
       textLimit={210}
       link={
-        <Link className={styles.link} to={`/posts/${id}`}>
+        <button className={styles.link} onClick={btnLinkHandler}>
           Читать
-        </Link>
+        </button>
       }
     ></Post>
   );

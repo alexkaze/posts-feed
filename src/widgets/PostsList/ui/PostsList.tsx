@@ -1,31 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '@/app/redux-hooks';
 import { Virtuoso } from 'react-virtuoso';
 
 import { useGetPostsQuery } from '../api';
+import { increasePostsLimit } from '../model';
 
+import { PostCompact } from '@/entities/PostCompact';
 import { Card } from '@/shared/ui/Card';
 import { Error } from '@/shared/ui/Error';
 import { Loading } from '@/shared/ui/Loading';
-import { PostCompact } from '@/entities/PostCompact';
 
 import styles from './PostsList.module.scss';
 
 const PostsList = () => {
-  const [limitPosts, setLimitPosts] = useState(7);
+  const { postsLimit } = useAppSelector(state => state.posts);
+  const { currentId } = useAppSelector(state => state.postCompact);
+  const dispatch = useAppDispatch();
   const postsListRef = useRef<HTMLDivElement>(null);
-
   const { data: fetchedPosts = [], error } = useGetPostsQuery({
     start: 0,
-    limit: limitPosts,
+    limit: postsLimit,
   });
 
   useEffect(() => {
     const containerEl = document.querySelector(
       '[data-test-id="virtuoso-item-list"]',
     ) as HTMLElement;
-
     containerEl.style.padding = '0 1rem';
-
     containerEl?.classList.add(styles.list);
   }, []);
 
@@ -42,16 +43,13 @@ const PostsList = () => {
 
       <Virtuoso
         data={fetchedPosts}
-        totalCount={limitPosts}
-        endReached={() =>
-          setLimitPosts(prevState =>
-            prevState + 7 > 100 ? 100 : prevState + 7,
-          )
-        }
+        totalCount={postsLimit}
+        endReached={() => dispatch(increasePostsLimit())}
+        initialTopMostItemIndex={currentId - 1 < 0 ? currentId : currentId - 1}
         components={{
           Footer: () => {
             if (error) return;
-            const endLimit = limitPosts === 100;
+            const endLimit = postsLimit === 100;
 
             return (
               <div className={styles.loading}>

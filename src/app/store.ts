@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { postsApi } from '@/widgets/PostsList';
+import { PostsReducer, postsApi } from '@/widgets/PostsList';
+import { PostCompactReducer } from '@/entities/PostCompact';
 
 export const store = configureStore({
   reducer: {
+    posts: PostsReducer,
+    postCompact: PostCompactReducer,
     [postsApi.reducerPath]: postsApi.reducer,
   },
 
