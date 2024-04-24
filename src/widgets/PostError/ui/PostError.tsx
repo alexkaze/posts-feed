@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { IPostError } from '../model';
 
 import { navigationMap } from '@/shared/model';
-import { Error } from '@/shared/ui/Error';
-import { ButtonLink } from '@/shared/ui/ButtonLink';
+import { Error, ButtonLink } from '@/shared/ui';
 
 import styles from './PostError.module.scss';
 

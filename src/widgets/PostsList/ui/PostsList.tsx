@@ -6,9 +6,7 @@ import { useGetPostsQuery } from '../api';
 import { increasePostsLimit } from '../model';
 
 import { PostCompact } from '@/entities/PostCompact';
-import { Card } from '@/shared/ui/Card';
-import { Error } from '@/shared/ui/Error';
-import { Loading } from '@/shared/ui/Loading';
+import { Card, Error, Loading } from '@/shared/ui';
 
 import styles from './PostsList.module.scss';
 

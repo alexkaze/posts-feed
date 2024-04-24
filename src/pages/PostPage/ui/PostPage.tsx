@@ -3,10 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useGetPostByIdQuery } from '../api';
 
 import { PostError } from '@/widgets/PostError';
-import { Card } from '@/shared/ui/Card';
-import { Loading } from '@/shared/ui/Loading';
-import { ButtonLink } from '@/shared/ui/ButtonLink';
-import { Post } from '@/shared/ui/Post';
+import { Card, Loading, ButtonLink, Post } from '@/shared/ui';
 
 import styles from './PostPage.module.scss';
 

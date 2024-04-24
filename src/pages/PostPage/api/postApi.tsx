@@ -1,6 +1,6 @@
 import { postsApi } from '@/widgets/PostsList';
 
-import { IPost } from '@/shared/ui/Post';
+import { IPost } from '@/shared/ui';
 
 const extendedApi = postsApi.injectEndpoints({
   endpoints: build => ({

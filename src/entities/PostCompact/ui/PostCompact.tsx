@@ -4,7 +4,7 @@ import { setCurrentPostId } from '../model';
 
 import { useAppDispatch } from '@/app/redux-hooks';
 import { navigationMap } from '@/shared/model';
-import { IPost, Post } from '@/shared/ui/Post';
+import { IPost, Post } from '@/shared/ui';
 
 import styles from './PostCompact.module.scss';
 

@@ -1,2 +1,2 @@
 export { PostCompactReducer } from './model';
-export { PostCompact } from './ui/';
+export { PostCompact } from './ui';

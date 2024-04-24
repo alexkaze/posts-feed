@@ -1,3 +1,3 @@
-import { IPost } from '@/shared/ui/Post';
+import { IPost } from '@/shared/ui';
 
 export type PostsResponse = [] | IPost[];

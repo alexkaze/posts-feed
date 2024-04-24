@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { navigationMap } from '@/shared/model';
-import { ButtonLink } from '@/shared/ui/ButtonLink';
+import { ButtonLink } from '@/shared/ui';
 
 import styles from './ErrorPage.module.scss';
 
