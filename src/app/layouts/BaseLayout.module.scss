@@ -5,11 +5,11 @@
 .page {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: minmax(2rem, 1fr) minmax(auto, 128rem) minmax(
+  grid-template-columns: minmax(2rem, 1fr) minmax(auto, 100rem) minmax(
       2rem,
       1fr
     );
-  grid-template-rows: 9rem 6rem minmax(auto, 80vh) 6rem;
+  grid-template-rows: 9rem 3rem minmax(auto, 100%) 3rem;
   grid-template-areas:
     'header header header'
     '. . .'
@@ -38,7 +38,7 @@
 // Media
 @include mobile() {
   .page {
-    grid-template-rows: 8rem 6rem minmax(auto, 80vh) 6rem;
+    grid-template-rows: 8rem 2rem minmax(auto, 100%) 2rem;
   }
 
   .footer {
