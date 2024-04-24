@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { setCurrentPostId } from '../model';
 
 import { useAppDispatch } from '@/app/redux-hooks';
+import { navigationMap } from '@/shared/model';
 import { IPost, Post } from '@/shared/ui/Post';
 
 import styles from './PostCompact.module.scss';
@@ -13,7 +14,7 @@ const PostCompact = ({ id, title, body }: IPost) => {
 
   const btnLinkHandler = () => {
     dispatch(setCurrentPostId(id));
-    navigate(`/posts/${id}`);
+    navigate(`${navigationMap.posts}/${id}`);
   };
 
   return (

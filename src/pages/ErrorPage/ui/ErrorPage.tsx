@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+import { navigationMap } from '@/shared/model';
 import { ButtonLink } from '@/shared/ui/ButtonLink';
 
 import styles from './ErrorPage.module.scss';
@@ -19,7 +20,9 @@ const ErrorPage = () => {
             incorrectly.
           </p>
 
-          <ButtonLink onClick={() => navigate('/')}>Go to home page</ButtonLink>
+          <ButtonLink onClick={() => navigate(navigationMap.home)}>
+            Go to home page
+          </ButtonLink>
         </div>
 
         <div className={styles['img-container']}>

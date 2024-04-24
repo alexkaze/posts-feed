@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import type { IPostError } from '../model';
 
+import { navigationMap } from '@/shared/model';
 import { Error } from '@/shared/ui/Error';
 import { ButtonLink } from '@/shared/ui/ButtonLink';
 
@@ -19,7 +20,10 @@ const PostError = ({ status }: IPostError) => {
     <Error>
       <h2>Post not found.</h2>
       <p>{errorText}</p>
-      <ButtonLink className={styles.btn} onClick={() => navigate('/')}>
+      <ButtonLink
+        className={styles.btn}
+        onClick={() => navigate(navigationMap.home)}
+      >
         Go to home page
       </ButtonLink>
     </Error>
